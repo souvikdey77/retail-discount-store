@@ -1,0 +1,14 @@
+version: "3"
+services:
+  mongodiscountdb:
+    image: mongo:latest
+    container_name: mongodiscountdb
+    ports:
+      - "27017:27017"
+  retail-discount-store:
+    image: retail-discount-store:1.0
+    container_name: retail-discount-store
+    ports:
+      - "8080:8080"
+    links:
+      - mongodiscountdb
