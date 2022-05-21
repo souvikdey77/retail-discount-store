@@ -60,7 +60,13 @@ docker.{collectionname}.find().pretty() // collectionname will be usertype, user
 I have configured the Jacoco plugin for generating the test coverage as well.
 You just need to execute mvn clean test and then reload the project and find the coverage report under target/site/jacoco/index.html
 
-**I have also attached the coverage report here
+**I have also attached the Jacoco coverage report
+
+**SONAR Code Analysis :- 
+
+I have used the maven sonar plugin to generate the sonar report.
+We can run the command mvn sonar:sonar to generate the report.
+I have also attached the sonar report in the project.
 
 
 
