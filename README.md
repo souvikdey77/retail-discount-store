@@ -53,7 +53,7 @@ you can easily verify the collection in Mongo.
 Here you will find the database name is "discount"
 
 By running the below command, you can verify the records in the collection :
-**docker.{collectionname}.find().pretty() // collectionname will be usertype, userdetails & db_sequence
+docker.{collectionname}.find().pretty() // collectionname will be usertype, userdetails & db_sequence
 
 **JACOCO Plugin :- 
 
