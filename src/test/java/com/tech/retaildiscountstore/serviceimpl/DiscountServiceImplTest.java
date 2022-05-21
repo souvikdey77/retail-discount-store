@@ -2,7 +2,7 @@ package com.tech.retaildiscountstore.serviceimpl;
 
 import com.tech.retaildiscountstore.Exception.UserNotFoundException;
 import com.tech.retaildiscountstore.model.DiscountEntity;
-import com.tech.retaildiscountstore.model.UserTypeEntity;
+import com.tech.retaildiscountstore.model.UserModel;
 import com.tech.retaildiscountstore.repository.DiscountRepository;
 import com.tech.retaildiscountstore.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
@@ -40,11 +40,11 @@ public class DiscountServiceImplTest {
         discountEntity.setNumberOfYear(4);
         discountEntity.setProductType("Electronics");
 
-        UserTypeEntity userTypeEntity = new UserTypeEntity();
+        UserModel userTypeEntity = new UserModel();
         userTypeEntity.setUserType("Employee");
-        userTypeEntity.setUserName("abc560");
+        userTypeEntity.setUsername("abc560");
         userTypeEntity.setNumberOfYears(4);
-        Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(userTypeEntity);
+        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(userTypeEntity);
         Mockito.when(sequenceGeneratorService.getSequenceNumber(Mockito.anyString())).thenReturn(1);
         Mockito.when(discountRepository.save(Mockito.any(DiscountEntity.class))).thenReturn(discountEntity);
         Double billAmount = serviceImpl.discountForUser("abc560",3000d);
@@ -61,11 +61,11 @@ public class DiscountServiceImplTest {
         discountEntity.setNumberOfYear(4);
         discountEntity.setProductType("Electronics");
 
-        UserTypeEntity userTypeEntity = new UserTypeEntity();
+        UserModel userTypeEntity = new UserModel();
         userTypeEntity.setUserType("Affiliate");
-        userTypeEntity.setUserName("abc561");
+        userTypeEntity.setUsername("abc561");
         userTypeEntity.setNumberOfYears(4);
-        Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(userTypeEntity);
+        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(userTypeEntity);
         Mockito.when(sequenceGeneratorService.getSequenceNumber(Mockito.anyString())).thenReturn(1);
         Mockito.when(discountRepository.save(Mockito.any(DiscountEntity.class))).thenReturn(discountEntity);
         Double billAmount = serviceImpl.discountForUser("abc561",4000d);
@@ -82,11 +82,11 @@ public class DiscountServiceImplTest {
         discountEntity.setNumberOfYear(4);
         discountEntity.setProductType("Electronics");
 
-        UserTypeEntity userTypeEntity = new UserTypeEntity();
+        UserModel userTypeEntity = new UserModel();
         userTypeEntity.setUserType("Customer");
-        userTypeEntity.setUserName("abc562");
+        userTypeEntity.setUsername("abc562");
         userTypeEntity.setNumberOfYears(4);
-        Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(userTypeEntity);
+        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(userTypeEntity);
         Mockito.when(sequenceGeneratorService.getSequenceNumber(Mockito.anyString())).thenReturn(1);
         Mockito.when(discountRepository.save(Mockito.any(DiscountEntity.class))).thenReturn(discountEntity);
         Double billAmount = serviceImpl.discountForUser("abc562",5000d);
@@ -103,11 +103,11 @@ public class DiscountServiceImplTest {
         discountEntity.setNumberOfYear(1);
         discountEntity.setProductType("Electronics");
 
-        UserTypeEntity userTypeEntity = new UserTypeEntity();
+        UserModel userTypeEntity = new UserModel();
         userTypeEntity.setUserType("Customer");
-        userTypeEntity.setUserName("abc564");
+        userTypeEntity.setUsername("abc564");
         userTypeEntity.setNumberOfYears(1);
-        Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(userTypeEntity);
+        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(userTypeEntity);
         Mockito.when(sequenceGeneratorService.getSequenceNumber(Mockito.anyString())).thenReturn(1);
         Mockito.when(discountRepository.save(Mockito.any(DiscountEntity.class))).thenReturn(discountEntity);
         Double billAmount = serviceImpl.discountForUser("abc564",5000d);
@@ -117,7 +117,7 @@ public class DiscountServiceImplTest {
 
     @Test
     public void testDiscountForCustomer_UserNotFoundException() throws Exception {
-        Mockito.when(userRepository.findByUserName(Mockito.anyString())).thenReturn(null);
+        Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(null);
         try{
             serviceImpl.discountForUser("abc564",5000d);
         }

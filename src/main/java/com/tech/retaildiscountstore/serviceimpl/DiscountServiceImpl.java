@@ -2,10 +2,11 @@ package com.tech.retaildiscountstore.serviceimpl;
 
 import com.tech.retaildiscountstore.Exception.UserNotFoundException;
 import com.tech.retaildiscountstore.model.DiscountEntity;
-import com.tech.retaildiscountstore.model.UserTypeEntity;
+import com.tech.retaildiscountstore.model.UserModel;
 import com.tech.retaildiscountstore.repository.DiscountRepository;
 import com.tech.retaildiscountstore.repository.UserRepository;
 import com.tech.retaildiscountstore.service.DiscountService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
  * ServiceImpl class responsible for the business implementation
  */
 @Service
+@Slf4j
 public class DiscountServiceImpl implements DiscountService {
 
     @Autowired
@@ -37,11 +39,12 @@ public class DiscountServiceImpl implements DiscountService {
     public Double discountForUser(String userName, Double orderedPrice) throws Exception {
         DiscountEntity discountEntity = new DiscountEntity();
         Double discountedPrice = 0d;
-        UserTypeEntity userTypeEntity = userRepository.findByUserName(userName);
+        UserModel userTypeEntity = userRepository.findByUsername(userName);
         if(userTypeEntity == null){
-            throw new UserNotFoundException(userName);
+            log.error("Not a valid user with username "+userName);
+            throw new UserNotFoundException("Not a valid user with username "+userName);
         }
-        discountEntity.setUserName(userTypeEntity.getUserName());
+        discountEntity.setUserName(userTypeEntity.getUsername());
         discountEntity.setUserId(sequenceGeneratorService.getSequenceNumber(DiscountEntity.SEQUENCE_NAME));
         discountEntity.setActualPrice(orderedPrice);
         discountEntity.setNumberOfYear(userTypeEntity.getNumberOfYears());
@@ -66,6 +69,7 @@ public class DiscountServiceImpl implements DiscountService {
             }
             discountEntity.setDiscountedPrice(discountedPrice);
             discountRepository.save(discountEntity);
+            log.info("Discount calculation is successfully completed and saved in db");
         return discountedPrice;
     }
 

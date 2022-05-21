@@ -1,6 +1,8 @@
 package com.tech.retaildiscountstore.service;
 
-import com.tech.retaildiscountstore.model.UserTypeEntity;
+import com.tech.retaildiscountstore.model.AdminModel;
+import com.tech.retaildiscountstore.model.UserModel;
+import com.tech.retaildiscountstore.pojo.AdminTO;
 import com.tech.retaildiscountstore.pojo.UserTO;
 
 /**
@@ -9,5 +11,6 @@ import com.tech.retaildiscountstore.pojo.UserTO;
  */
 public interface UserService {
 
-    UserTypeEntity createUser(UserTO userTO);
+    AdminModel createAdmin(AdminTO adminTO);
+    UserModel createUser(UserTO userTO);
 }

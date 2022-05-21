@@ -6,6 +6,6 @@ package com.tech.retaildiscountstore.Exception;
  */
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String userName){
-        super(String.format("User is not available with username %s", userName));
+        super(userName);
     }
 }

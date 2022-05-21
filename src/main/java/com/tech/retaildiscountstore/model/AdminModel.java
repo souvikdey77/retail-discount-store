@@ -16,15 +16,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "usertype")
-public class UserTypeEntity {
-
+@Document(collection = "admin")
+public class AdminModel {
     @Transient
-    public static final String SEQUENCE_NAME = "user_sequence";
+    public static final String SEQUENCE_NAME = "admin_sequence";
 
     @Id
     private Integer _id;
-    private String userName;
-    private String userType;
-    private int numberOfYears;
+    private String username;
+    private String password;
 }
