@@ -12,8 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 /**
  * @author souvikdey
@@ -39,12 +40,12 @@ public class DiscountControllerTest {
 
         Mockito.when(discountServiceImpl.discountForUser(Mockito.anyString(),Mockito.anyDouble())).thenReturn(1000d);
         String content = objectMapper.writeValueAsString(orderDetailsTO);
-        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/discount/user")
+        MockHttpServletRequestBuilder mockRequest = post("/discount/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content);
 
         mockMvc.perform(mockRequest)
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(status().isOk());
     }
 
 

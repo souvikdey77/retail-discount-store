@@ -1,9 +1,6 @@
 package com.tech.retaildiscountstore.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author souvikdey
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserTO {
     private String userName;
     private String userType;
