@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * DiscountController test class
  */
 @WebMvcTest(DiscountController.class)
-public class DiscountControllerTest {
+class DiscountControllerTest {
 
     @MockBean
     private DiscountServiceImpl discountServiceImpl;
@@ -41,7 +41,7 @@ public class DiscountControllerTest {
 
     @Test
     @WithMockUser(username = "roby", authorities = {"ADMIN"})
-    public void testDiscount() throws Exception {
+    void testDiscount() throws Exception {
         OrderDetailsTO orderDetailsTO = OrderDetailsTO.builder()
                         .orderPrice(3000d).userName("rob23").build();
         User user = new User("Joe","Joe", Collections.singleton(new SimpleGrantedAuthority("ADMIN")));

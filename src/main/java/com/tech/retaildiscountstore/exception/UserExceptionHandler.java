@@ -1,4 +1,4 @@
-package com.tech.retaildiscountstore.Exception;
+package com.tech.retaildiscountstore.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

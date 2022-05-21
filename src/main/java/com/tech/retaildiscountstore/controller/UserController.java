@@ -1,6 +1,6 @@
 package com.tech.retaildiscountstore.controller;
 
-import com.tech.retaildiscountstore.Exception.UserAlreadyCreatedException;
+import com.tech.retaildiscountstore.exception.UserAlreadyCreatedException;
 import com.tech.retaildiscountstore.model.AdminModel;
 import com.tech.retaildiscountstore.model.UserModel;
 import com.tech.retaildiscountstore.pojo.AdminTO;

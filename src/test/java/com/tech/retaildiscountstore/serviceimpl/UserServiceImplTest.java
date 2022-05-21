@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * Test cases for UserServiceImpl
  */
 @SpringBootTest
-public class UserServiceImplTest {
+class UserServiceImplTest {
 
     @Mock
     private UserRepository repository;
@@ -37,7 +37,7 @@ public class UserServiceImplTest {
     private UserServiceImpl serviceImpl;
 
     @Test
-    public void testCreateUser(){
+    void testCreateUser(){
         UserTO userTO = new UserTO();
         userTO.setUserName("rohit");
         userTO.setUserType("Customer");
@@ -54,14 +54,14 @@ public class UserServiceImplTest {
         Mockito.when(repository.save(Mockito.any(UserModel.class))).thenReturn(userTypeEntity);
         UserModel result = serviceImpl.createUser(userTO);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(result.getUserType(), "Customer");
-        Assertions.assertEquals(result.getUsername(), "rohit");
-        Assertions.assertEquals(result.getNumberOfYears(), 2);
+        Assertions.assertEquals( "Customer",result.getUserType());
+        Assertions.assertEquals("rohit",result.getUsername());
+        Assertions.assertEquals( 2,result.getNumberOfYears());
 
     }
 
     @Test
-    public void testCreateAdmin(){
+    void testCreateAdmin(){
         AdminTO adminTO = new AdminTO();
         adminTO.setUsername("storeadmin");
         adminTO.setPassword("admin");
@@ -76,12 +76,12 @@ public class UserServiceImplTest {
         Mockito.when(adminRepository.save(Mockito.any(AdminModel.class))).thenReturn(adminModel);
         AdminModel result = serviceImpl.createAdmin(adminTO);
         Assertions.assertNotNull(result);
-        Assertions.assertEquals(result.getUsername(), "storeadmin");
-        Assertions.assertEquals(result.getPassword(), "admin");
+        Assertions.assertEquals("storeadmin",result.getUsername() );
+        Assertions.assertEquals("admin",result.getPassword());
     }
 
     @Test
-    public void testCreateUser_whenUserAlreadyAvailable(){
+    void testCreateUser_whenUserAlreadyAvailable(){
         UserTO userTO = new UserTO();
         userTO.setUserName("rohit");
         userTO.setUserType("Customer");
@@ -100,7 +100,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testCreateAdmin_whenAdminAlreadyAvailable(){
+    void testCreateAdmin_whenAdminAlreadyAvailable(){
         AdminTO adminTO = new AdminTO();
         adminTO.setUsername("storeadmin");
         adminTO.setPassword("admin");

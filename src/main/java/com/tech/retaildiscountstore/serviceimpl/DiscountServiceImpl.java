@@ -1,6 +1,6 @@
 package com.tech.retaildiscountstore.serviceimpl;
 
-import com.tech.retaildiscountstore.Exception.UserNotFoundException;
+import com.tech.retaildiscountstore.exception.UserNotFoundException;
 import com.tech.retaildiscountstore.model.DiscountEntity;
 import com.tech.retaildiscountstore.model.UserModel;
 import com.tech.retaildiscountstore.repository.DiscountRepository;

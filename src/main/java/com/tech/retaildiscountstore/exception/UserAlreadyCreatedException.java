@@ -1,4 +1,4 @@
-package com.tech.retaildiscountstore.Exception;
+package com.tech.retaildiscountstore.exception;
 
 /**
  * @author souvikdey

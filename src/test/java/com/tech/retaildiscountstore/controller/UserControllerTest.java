@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,7 +40,7 @@ public class UserControllerTest {
 
     @Test
     @WithMockUser(username = "Joe", authorities = {"ADMIN"})
-    public void testCreateUser() throws Exception {
+    void testCreateUser() throws Exception {
         UserTO userTO = UserTO.builder().userName("ramesh12")
                 .userType("Employee").build();
 
@@ -59,7 +59,7 @@ public class UserControllerTest {
                 .andExpect(status().isCreated());
     }
     @Test
-    public void testAdminUser() throws Exception {
+    void testAdminUser() throws Exception {
         AdminTO adminTO = AdminTO.builder().username("storeadmin")
                 .password("admin").build();
 

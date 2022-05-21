@@ -1,6 +1,6 @@
 package com.tech.retaildiscountstore.serviceimpl;
 
-import com.tech.retaildiscountstore.Exception.UserNotFoundException;
+import com.tech.retaildiscountstore.exception.UserNotFoundException;
 import com.tech.retaildiscountstore.model.DiscountEntity;
 import com.tech.retaildiscountstore.model.UserModel;
 import com.tech.retaildiscountstore.repository.DiscountRepository;
@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * DiscountServiceImplTest test class
  */
 @SpringBootTest
-public class DiscountServiceImplTest {
+class DiscountServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
@@ -32,7 +32,7 @@ public class DiscountServiceImplTest {
     private DiscountServiceImpl serviceImpl;
 
     @Test
-    public void testDiscountForEmployee() throws Exception {
+    void testDiscountForEmployee() throws Exception {
 
         DiscountEntity discountEntity = new DiscountEntity();
         discountEntity.setUserName("abc560");
@@ -53,7 +53,7 @@ public class DiscountServiceImplTest {
     }
 
     @Test
-    public void testDiscountForAffiliate() throws Exception {
+    void testDiscountForAffiliate() throws Exception {
 
         DiscountEntity discountEntity = new DiscountEntity();
         discountEntity.setUserName("abc560");
@@ -74,7 +74,7 @@ public class DiscountServiceImplTest {
     }
 
     @Test
-    public void testDiscountForCustomer_NumberOfYearGreaterThanTwo() throws Exception {
+    void testDiscountForCustomer_NumberOfYearGreaterThanTwo() throws Exception {
 
         DiscountEntity discountEntity = new DiscountEntity();
         discountEntity.setUserName("abc562");
@@ -95,7 +95,7 @@ public class DiscountServiceImplTest {
     }
 
     @Test
-    public void testDiscountForCustomer_NumberOfYearLesserThanTwo() throws Exception {
+    void testDiscountForCustomer_NumberOfYearLesserThanTwo() throws Exception {
 
         DiscountEntity discountEntity = new DiscountEntity();
         discountEntity.setUserName("abc564");
@@ -116,10 +116,11 @@ public class DiscountServiceImplTest {
     }
 
     @Test
-    public void testDiscountForCustomer_UserNotFoundException() throws Exception {
+    void testDiscountForCustomer_UserNotFoundException() throws Exception {
         Mockito.when(userRepository.findByUsername(Mockito.anyString())).thenReturn(null);
         try{
-            serviceImpl.discountForUser("abc564",5000d);
+            Double billAmount = serviceImpl.discountForUser("abc564",5000d);
+            Assertions.assertNull(billAmount);
         }
         catch(UserNotFoundException ex){
         }
